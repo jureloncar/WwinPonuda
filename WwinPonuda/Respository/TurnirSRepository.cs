@@ -3,9 +3,9 @@ using WwinPonuda.Contracts;
 
 namespace WwinPonuda.Respository
 {
-    public class Turnir_SRespository
+    public class TurnirSRepository
     {
-        public class TurnirSRespository : ITurinir_SRespository
+        public class TurnirSRespository : ITurnirSRepository
         {
             private readonly DapperContext _context;
             public TurnirSRespository(DapperContext context) => _context = context;

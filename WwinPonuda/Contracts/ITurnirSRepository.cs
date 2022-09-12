@@ -1,6 +1,6 @@
 ﻿namespace WwinPonuda.Contracts
 {
-    public interface ITurinir_SRespository
+    public interface ITurnirSRepository
     {
     }
 }
