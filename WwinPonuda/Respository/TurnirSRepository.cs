@@ -1,6 +1,7 @@
 ﻿using WwinPonuda.Context;
+using WwinPonuda.Respository.Interface;
 
-namespace WwinPonuda.Respository.Interface
+namespace WwinPonuda.Respository
 {
     public class TurnirSRepository
     {
