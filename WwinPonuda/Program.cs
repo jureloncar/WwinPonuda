@@ -1,6 +1,5 @@
 using WwinPonuda.Context;
-using WwinPonuda.Contracts;
-using WwinPonuda.Repository;
+using WwinPonuda.Respository.Interface;
 
 namespace WwinPonuda
 {
