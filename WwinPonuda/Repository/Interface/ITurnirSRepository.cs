@@ -1,4 +1,4 @@
-﻿namespace WwinPonuda.Respository.Interface
+﻿namespace WwinPonuda.Repository.Interface
 {
     public interface ITurnirSRepository
     {

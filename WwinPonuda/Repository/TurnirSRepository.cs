@@ -1,13 +1,13 @@
 ﻿using WwinPonuda.Context;
-using WwinPonuda.Respository.Interface;
+using WwinPonuda.Repository.Interface;
 
-namespace WwinPonuda.Respository
+namespace WwinPonuda.Repository
 {
     
-        public class TurnirSRespository : ITurnirSRepository
+        public class TurnirSRepository : ITurnirSRepository
         {
             private readonly DapperContext _context;
-            public TurnirSRespository(DapperContext context) => _context = context;
+            public TurnirSRepository(DapperContext context) => _context = context;
         }
     }
 
