@@ -1,6 +1,6 @@
 ﻿namespace WwinPonuda.Models
 {
-    public class TurnirS
+    public class Turnir
     {
         public int IDTurnir { get; set; }
         public int SportID { get; set; }
