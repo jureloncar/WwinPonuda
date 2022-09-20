@@ -22,7 +22,7 @@
         public string? TournamentName { get; set; }
         public byte? BetSourceID { get; set; }
         public int SourceTournamentID { get; set; }
-        public DateTime TimeStampUTC { get; set; }
+        public long TimeStampUTC { get; set; }
         public string? PrevodNapomena { get; set; }
     }
 }

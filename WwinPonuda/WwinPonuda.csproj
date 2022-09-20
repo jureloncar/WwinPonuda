@@ -7,9 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\ImageTurniriApiController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Controllers\ImageTurniriApiController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.9" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Frontend\" />
   </ItemGroup>
 
 </Project>

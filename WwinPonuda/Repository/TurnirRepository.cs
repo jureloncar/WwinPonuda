@@ -26,15 +26,9 @@ namespace WwinPonuda.Repository
             }
         }
 
-        public async Task<Turnir> GetTurnirs(int id)
+        public Task<IEnumerable<Turnir>> PostTurnirs()
         {
-            var query = "SELECT * FROM Turnir_S WHERE Id = @Id";
-            using (var connection = _context.CreateConnection())
-            {
-                var turnir = await connection.QuerySingleOrDefaultAsync<Turnir>(query, new { id });
-                return turnir;
-            }
+            throw new NotImplementedException();
         }
     }
 }
-
