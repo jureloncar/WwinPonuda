@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using System.Data;
 using WwinPonuda.Context;
 using WwinPonuda.Models;
 using WwinPonuda.Repository.Interface;
@@ -26,7 +27,18 @@ namespace WwinPonuda.Repository
             }
         }
 
-        public Task<IEnumerable<Turnir>> PostTurnirs()
+        public async Task CreateTurnirImage(TurnirImage turnirImage)
+        {
+            var query = "INSERT INTO TurnirImage (ID, TurnirID, StatusImageID) VALUES (@ID, @TurnirID, @StatusImageID)";
+          
+            
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query);
+            }
+        }
+
+        Task<IEnumerable<TurnirImage>> ITurnirRepository.CreateTurnirImage(TurnirImage turnirImage)
         {
             throw new NotImplementedException();
         }

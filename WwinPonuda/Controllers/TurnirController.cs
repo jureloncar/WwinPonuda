@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Web.Http.Cors;
+using WwinPonuda.Models;
 using WwinPonuda.Repository;
 using WwinPonuda.Repository.Interface;
 
@@ -12,6 +14,8 @@ namespace WwinPonuda.Controllers
     public class TurnirsController : ControllerBase
     {
         private readonly ITurnirRepository _turnirRepo;
+        private readonly object GetTurnirImage;
+
         public TurnirsController(ITurnirRepository turnirRepo) => _turnirRepo = turnirRepo;
 
         [HttpGet]
@@ -21,22 +25,20 @@ namespace WwinPonuda.Controllers
             return Ok(turnirs);
         }
 
-        [HttpPatch("{id}")]
-        public async Task AddImage(string id, IFormatFile file)
+        [HttpPost]
+        public async Task<IActionResult> CreateTurnirImage(TurnirImage turnirImage)
         {
-            var Turnir = await ITurnirRepository.GetByIDTurnir();
-            Turnir.StatusImage = 1;
-
-            await ITurnirRepository.update(Turnir);
-
-            var fileStream = new FileStream("tempFile.jpg", FileMode.CreateNew);
-            file.CopyTo(fileStream);
-
-            string fileContents;
-            using (StreamReader reader = new StreamReader(fileStream))
+            try
             {
-                fileContents = reader.ReadToEnd();
+                var createdTurnirImage = await _turnirRepo.CreateTurnirImage(turnirImage);
+                return CreatedAtRoute("TurnirID", new { id = createdTurnirImage.ID }, createdTurnirImage);
             }
-            await TurnirImageRepository.Add(fileContents, Turnir.Id);
+            catch (Exception ex)
+            {
+                //log error
+                return StatusCode(500, ex.Message);
+            }
         }
     }
+}
+    
