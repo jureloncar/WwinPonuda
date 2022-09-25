@@ -14,7 +14,6 @@ namespace WwinPonuda.Controllers
     public class TurnirsController : ControllerBase
     {
         private readonly ITurnirRepository _turnirRepo;
-        private readonly object GetTurnirImage;
 
         public TurnirsController(ITurnirRepository turnirRepo) => _turnirRepo = turnirRepo;
 
@@ -31,7 +30,7 @@ namespace WwinPonuda.Controllers
             try
             {
                 var createdTurnirImage = await _turnirRepo.CreateTurnirImage(turnirImage);
-                return CreatedAtRoute("TurnirID", new { id = createdTurnirImage.ID }, createdTurnirImage);
+                return CreatedAtRoute("TurnirImageById", new { id = createdTurnirImage }, createdTurnirImage);
             }
             catch (Exception ex)
             {
@@ -41,4 +40,5 @@ namespace WwinPonuda.Controllers
         }
     }
 }
+
     
