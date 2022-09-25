@@ -13,7 +13,7 @@ namespace WwinPonuda
             // Add services to the container.
             builder.Services.AddSingleton<DapperContext>();
             builder.Services.AddScoped<ITurnirRepository, TurnirRepository>();
-
+            
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -31,6 +31,10 @@ namespace WwinPonuda
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
+            app.UseCors(
+              options => options.WithOrigins("*").AllowAnyMethod().AllowAnyHeader()
+                  );
 
 
             app.MapControllers();

@@ -8,7 +8,7 @@ using WwinPonuda.Repository.Interface;
 
 namespace WwinPonuda.Controllers
 {
-    [EnableCors("*", "*", "*")]
+    //[EnableCors("*", "*", "*")]
     [Route("api/Turnirs")]
     [ApiController]
     public class TurnirsController : ControllerBase

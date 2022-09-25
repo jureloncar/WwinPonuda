@@ -19,7 +19,7 @@ namespace WwinPonuda.Repository
 
         public async Task<IEnumerable<Turnir>> GetTurnirs()
         {
-            var query = "SELECT * FROM Turnir_S";
+            var query = "select top (15) * from Turnir_S where IDTurnir NOT IN (Select TurnirID FROM TurnirImage)";
             using (var connection = _context.CreateConnection())
             {
                 var Turnirs = await connection.QueryAsync<Turnir>(query);
