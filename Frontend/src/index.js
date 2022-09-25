@@ -4,13 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Turnir from './Turnir';
-import ImagesList from './ImagesList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Turnir />
-    <ImagesList/>
   </React.StrictMode>
 );
 

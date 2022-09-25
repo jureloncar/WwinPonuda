@@ -26,6 +26,7 @@ function Turnir(){
               <tr>
                 <td key={tur.idTurnir}>{tur.idTurnir}</td>
                 <td>{tur.tournamentName}</td>
+                <td><img src={tur.image}></img></td>
               </tr>
             ))}
           </tbody>

@@ -2,9 +2,8 @@
 {
     public class TurnirImage
     {
-        public int ID { get; set; }
         public int TurnirID { get; set; }
-        public byte? StatusImageID { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
 
