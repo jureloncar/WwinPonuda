@@ -6,8 +6,5 @@ namespace WwinPonuda.Repository.Interface
     {
         public Task<IEnumerable<Turnir>> GetTurnirs();
         public Task<IEnumerable<TurnirImage>> CreateTurnirImage(TurnirImage turnirImage);
-
-
-
     }
 }

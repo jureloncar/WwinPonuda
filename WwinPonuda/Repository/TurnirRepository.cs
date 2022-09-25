@@ -12,11 +12,6 @@ namespace WwinPonuda.Repository
         private readonly DapperContext _context;
         public TurnirRepository(DapperContext context) => _context = context;
 
-        public Task<Turnir> GetTurnir(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<Turnir>> GetTurnirs()
         {
             var query = "select top (15) * from Turnir_S where IDTurnir NOT IN (Select TurnirID FROM TurnirImage)";
@@ -24,17 +19,6 @@ namespace WwinPonuda.Repository
             {
                 var Turnirs = await connection.QueryAsync<Turnir>(query);
                 return Turnirs.ToList();
-            }
-        }
-
-        public async Task CreateTurnirImage(TurnirImage turnirImage)
-        {
-            var query = "INSERT INTO TurnirImage (ID, TurnirID, StatusImageID) VALUES (@ID, @TurnirID, @StatusImageID)";
-          
-            
-            using (var connection = _context.CreateConnection())
-            {
-                await connection.ExecuteAsync(query);
             }
         }
 
