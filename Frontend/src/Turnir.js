@@ -26,7 +26,12 @@ function Turnir(){
               <tr>
                 <td key={tur.idTurnir}>{tur.idTurnir}</td>
                 <td>{tur.tournamentName}</td>
-                <td><img src={tur.image}></img></td>
+                <td  input type="file">
+                <label for="myfile"></label>
+                <input type="file" id="myfile" name="myfile"></input>
+                  <img src={tur.image}></img>
+                  <input type="submit"></input>
+                </td>
               </tr>
             ))}
           </tbody>
