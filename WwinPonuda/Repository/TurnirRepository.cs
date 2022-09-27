@@ -1,7 +1,11 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.IdentityModel.Tokens;
 using System.Buffers.Text;
+using System.ComponentModel;
 using System.Data;
 using System.Net.NetworkInformation;
+using System.Web.Http.Results;
 using WwinPonuda.Context;
 using WwinPonuda.Models;
 using WwinPonuda.Repository.Interface;
@@ -29,20 +33,43 @@ namespace WwinPonuda.Repository
             }
         }
 
-        Task<IEnumerable<TurnirImage>> ITurnirRepository.CreateTurnirImage(TurnirImage turnirImage)
+        async Task<IEnumerable<TurnirImage>> ITurnirRepository.CreateTurnirImage(TurnirImage turnirImage)
         {
             //uzeti sliku iz turnirImage.ImgUrl
             //prebaciti u novi folder i preimenovati u TurnirID.png
+            var query = "select top (25) * from Turnir_S where Image NOT IN (Select ImageUrl FROM TurnirImage)";
+            using (var connection = _context.CreateConnection())
+            {
+                var turnirs = await connection.QueryAsync<TurnirImage>(query);
+
+                TurnirImage.StatusImageID = 1;
+
+                await TurnirImage.Update(ImageUrl);
+
+                var fileStream = new FileStream("SportBook2.jpg", FileMode.CreateNew);
+                file.CopyTo(fileStream);
+
+                string fileContents;
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    fileContents = reader.ReadToEnd();
+                }
+
+                await query.Add(fileContents, TurnirImage.ID);
+
+
+                //spremiti novi podataka sa statusom 1 u TrnirImages bazu
 
 
 
-            //spremiti novi podataka sa statusom 1 u TrnirImages bazu
-
-
-            throw new NotImplementedException();
+            }
         }
 
         private string URL_LOCATION = @"C:\SportBook\png_small";
+        private object file;
+
+        public object ImageUrl { get; private set; }
+
         private string LoadImage(int id)
         {
             try
