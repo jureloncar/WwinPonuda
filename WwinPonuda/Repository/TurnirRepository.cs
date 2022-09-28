@@ -54,10 +54,11 @@ namespace WwinPonuda.Repository
                 if (!Directory.Exists(destinationDirectoryPath))
                 {
                     Directory.CreateDirectory(destinationDirectoryPath);
+                    
                 }
+                File.Copy(imageUrl, destinationPath, true);
                 await connection.ExecuteAsync($"INSERT INTO TurnirImage (ID, {nameof(TurnirImage.TurnirID)}, {nameof(TurnirImage.StatusImageID)}, {nameof(TurnirImage.ImageUrl)}) VALUES ({turnirId}, {turnirId}, 1, '{destinationPath}')");
                 
-                File.Copy(imageUrl, destinationPath, true);
 
                 return destinationPath;
             }
