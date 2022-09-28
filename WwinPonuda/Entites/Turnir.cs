@@ -24,6 +24,6 @@
         public int SourceTournamentID { get; set; }
         public long TimeStampUTC { get; set; }
         public string? PrevodNapomena { get; set; }
-        public string Image { get; set; }
+        public string? Image { get; set; }
     }
 }

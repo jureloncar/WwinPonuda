@@ -24,12 +24,17 @@ namespace WwinPonuda.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTurnirImage(TurnirImage turnirImage)
+        public async Task<IActionResult> CreateTurnirImage([FromBody]TurnirImageRequest turnirImageRequest)
         {
             try
             {
-                var createdTurnirImage = await _turnirRepo.CreateTurnirImage(turnirImage);
-                return CreatedAtRoute("TurnirImageById", new { id = createdTurnirImage }, createdTurnirImage);
+                var createdTurnirImageUrl = await _turnirRepo.CreateTurnirImage(turnirImageRequest.TurnirID, turnirImageRequest.ImageURL, turnirImageRequest.Size);
+                if (createdTurnirImageUrl == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(createdTurnirImageUrl);
             }
             catch (Exception ex)
             {
